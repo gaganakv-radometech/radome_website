@@ -2,15 +2,16 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.text import slugify
 from .models import BlogPost, BlogSection, BlogFAQ
+import re
 
 
 # ======================================================
 # CONTACT FORM
 # ======================================================
-
 class ContactForm(forms.Form):
     name = forms.CharField(
-        max_length=100,
+        max_length=30,
+        min_length=3,
         widget=forms.TextInput(attrs={
             "placeholder": "Enter Name",
             "class": "w-full px-4 py-3 border rounded-lg"
@@ -33,6 +34,8 @@ class ContactForm(forms.Form):
     )
 
     message = forms.CharField(
+        max_length=1000,
+        min_length=10,
         widget=forms.Textarea(attrs={
             "placeholder": "Enter Message",
             "rows": 5,
@@ -40,29 +43,64 @@ class ContactForm(forms.Form):
         })
     )
 
+    # -------------------------
+    # NAME VALIDATION
+    # -------------------------
     def clean_name(self):
-        name = self.cleaned_data.get("name")
-        if len(name.strip()) < 3:
+        name = self.cleaned_data.get("name", "").strip()
+
+        if not name:
+            raise ValidationError("Name cannot be empty.")
+
+        # Allow only letters and spaces
+        if not re.match(r"^[A-Za-z ]+$", name):
+            raise ValidationError("Name must contain only letters and spaces.")
+
+        if len(name) < 3:
             raise ValidationError("Name must be at least 3 characters long.")
-        return name
 
+        return name.title()
+
+
+    # -------------------------
+    # PHONE VALIDATION
+    # -------------------------
     def clean_phone(self):
-        phone = self.cleaned_data.get("phone")
+        phone = self.cleaned_data.get("phone", "").strip()
 
-        if not phone.isdigit():
-            raise ValidationError("Phone number must contain only digits.")
+        if not phone:
+            raise ValidationError("Phone number is required.")
 
-        if len(phone) != 10:
-            raise ValidationError("Phone number must be exactly 10 digits.")
+        # Remove spaces and dashes
+        phone = phone.replace(" ", "").replace("-", "")
+
+        # Support Indian numbers (10 digits or +91XXXXXXXXXX)
+        pattern = r"^(\+91)?[6-9]\d{9}$"
+
+        if not re.match(pattern, phone):
+            raise ValidationError(
+                "Enter a valid 10-digit Indian phone number."
+            )
 
         return phone
 
-    def clean_message(self):
-        message = self.cleaned_data.get("message")
-        if len(message.strip()) < 10:
-            raise ValidationError("Message must be at least 10 characters long.")
-        return message
 
+    # -------------------------
+    # MESSAGE VALIDATION
+    # -------------------------
+    def clean_message(self):
+        message = self.cleaned_data.get("message", "").strip()
+
+        if not message:
+            raise ValidationError("Message cannot be empty.")
+
+        if len(message) < 10:
+            raise ValidationError("Message must be at least 10 characters long.")
+
+        if len(message) > 1000:
+            raise ValidationError("Message must be under 1000 characters.")
+
+        return message
 
 # ======================================================
 # BLOG POST FORM

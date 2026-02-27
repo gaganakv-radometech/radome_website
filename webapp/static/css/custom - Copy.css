@@ -131,6 +131,7 @@ body {
 .row>* {
 	padding-right: 15px;
 	padding-left: 15px;
+	padding-bottom: 15px;
 }
 
 .row.no-gutters {

@@ -5336,8 +5336,7 @@ body {
 
 .value-container {
     max-width: 1380px;
-    margin: 0 auto;
-    padding: 0 48px;
+    padding: 0 30px;
     position: relative;
 }
 
@@ -5786,7 +5785,7 @@ body {
 }
 
 .card-content {
-    padding: 50px 60px;
+    padding: 40px 80px;
      /* Optional: semi-transparent background for better text readability */
     color: white; /* Ensure text is visible */
 }
