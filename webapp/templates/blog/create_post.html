@@ -71,7 +71,7 @@
                         <!-- Banner Image -->
                         <div>
                             <label class="block font-semibold mb-2">
-                                🖼 Banner Image
+                                🖼 Banner Image <span class="text-red-500">*</span>
                             </label>
 
                             <div
@@ -118,13 +118,12 @@
 
 <!-- Publish Date -->
 <div>
-    <label class="block font-semibold mb-2">
-        📅 Publish Date
-    </label>
+<label class="block font-semibold mb-2">
+    📅 Publish Date <span class="text-red-500">*</span>
+</label>
     {{ form.published_at }}
-<p class="text-xs text-gray-500 mt-1">
-    Leave empty to publish immediately.  
-    Set a future date to schedule publishing.
+<p class="text-xs text-gray-500 mt-1">      
+Set a future date to schedule publishing.
 </p>
 
     {% if form.published_at.errors %}
@@ -228,15 +227,13 @@ const publishDate = document.querySelector('input[name="published_at"]');
 function togglePublishDate() {
 
     if (publishToggle.checked) {
-        publishDate.required = true;   // require date when publishing
+        publishDate.required = true;
     } else {
-        publishDate.required = false;  // not required for draft
-        publishDate.value = "";        // clear value
+        publishDate.required = false;
     }
 
 }
 
-// run on page load
 if (publishToggle && publishDate) {
     togglePublishDate();
     publishToggle.addEventListener("change", togglePublishDate);

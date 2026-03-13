@@ -1145,35 +1145,42 @@ Achievement Highlight Section -->
          object-fit: cover;
       }
 
+      .mobile-video-wrapper{
+    display:none;
+}
+
 
       /* =========================
    MOBILE VIDEO
 ========================= */
-      @media (max-width:991px) {
+  @media (max-width:991px){
 
-         .mobile-video-wrapper {
-            position: relative;
-            width: 100%;
-            height: 260px;
-            overflow: hidden;
-         }
+    .desktop-video-wrapper{
+        display:none;
+    }
 
-         .mobile-video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 5;
-         }
+    .mobile-video-wrapper{
+        display:block;
+        position: relative;
+        width: 100%;
+        height: 260px;
+        overflow: hidden;
+    }
 
-         /* remove theme overlay */
-         .mobile-video-wrapper::after {
-            display: none !important;
-         }
+    .mobile-video-wrapper video{
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        z-index:5;
+    }
 
-      }
+    .mobile-video-wrapper::after{
+        display:none !important;
+    }
+}
    </style>
 
    <script>

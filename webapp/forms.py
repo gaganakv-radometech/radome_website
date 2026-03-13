@@ -134,9 +134,9 @@ class BlogPostForm(forms.ModelForm):
                 'placeholder': 'Short description for blog listing...'
             }),
 
-            'banner_image': forms.ClearableFileInput(attrs={
-                'class': 'block w-full text-sm'
-            }),
+'banner_image': forms.ClearableFileInput(attrs={
+    'class': 'block w-full text-sm',
+}),
 
             'author': forms.Select(attrs={
                 'class': 'w-full px-4 py-3 border rounded-lg'
@@ -162,7 +162,8 @@ class BlogPostForm(forms.ModelForm):
     attrs={
         'type': 'datetime-local',
         'step': '1',
-        'class': 'w-full px-4 py-3 border rounded-lg'
+        'class': 'w-full px-4 py-3 border rounded-lg',
+        'required': True
     }
 ),
             'is_published': forms.CheckboxInput(attrs={

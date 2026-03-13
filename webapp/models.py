@@ -630,8 +630,6 @@ class BlogPost(models.Model):
 
     banner_image = models.ImageField(
         upload_to="blog/banner/",
-        blank=True,
-        null=True
     )
     author = models.ForeignKey(
         BlogAuthor,

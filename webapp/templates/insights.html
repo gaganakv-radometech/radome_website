@@ -262,8 +262,8 @@
 
 .pbmit-title-bar-wrapper{
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
+    
 
     position: relative;
     height: 450px;
@@ -315,6 +315,27 @@
     /* justify text */
     text-align:justify;
     text-justify:inter-word;
+}
+/* MOBILE HERO TITLE CENTER FIX */
+@media (max-width:768px){
+
+.pbmit-title-bar-content,
+.pbmit-title-bar-content-inner,
+.pbmit-tbar,
+.pbmit-tbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    text-align:center;
+    padding-top: 65px; /* adjust as needed for better vertical centering on mobile */
+}
+
+.pbmit-tbar-title{
+    margin-top:0 !important;
+    text-align:center;
+}
+
 }
 
 

@@ -11502,13 +11502,34 @@ body.rtl .pbmit-portfolio-style-4 .pbminfotech-titlebox {
 	background-image: url(../images/mega-menu-bg-patten.webp);
 	background-color: rgba(71, 9, 241, 0.5);
 	background-repeat: no-repeat;
-	background-position: center center;
+	background-size: cover;       /* fills full banner */
+	 /* center image */
 	background-size: cover;
 	background-attachment: scroll;
 	position: relative;
 	padding-top: 100px !important;
 	
 }
+
+/* MOBILE BANNER FIX */
+@media (max-width:768px){
+
+.pbmit-title-bar-wrapper{
+	height:260px;              /* smaller banner height */
+	padding-top:0 !important;  /* remove large top space */
+
+	background-size:cover;
+	background-position:65% center; /* shifts image so robot is visible */
+}
+
+.pbmit-tbar-title{
+	font-size:28px !important;
+	text-align:center;
+}
+
+}
+
+
 
 
 .cont-titlebar {
@@ -11585,7 +11606,6 @@ body.rtl .pbmit-portfolio-style-4 .pbminfotech-titlebox {
 .pbmit-title-bar-wrapper1 {
 	background-color: rgb(28, 28, 82);
 	background-repeat: no-repeat;
-	background-position: center center;
 	background-size: cover;
 	background-attachment: scroll;
 	position: relative;
@@ -11602,7 +11622,15 @@ body.rtl .pbmit-portfolio-style-4 .pbminfotech-titlebox {
 .pbmit-tbar-title {
 	color: white;
 	font-size: 50px;
-	margin-top: 50px;
+	margin-top: 80px;
+}
+@media (max-width:768px){
+
+.pbmit-tbar-title{
+    margin-top:0 !important;
+    font-size:28px;   /* optional: better size for mobile */
+}
+
 }
 
 /* feture practice start */

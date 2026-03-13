@@ -220,7 +220,7 @@ def contact(request):
                 subject="New Contact Form Submission",
                 message=full_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=["gagana@telloquent.com"],
+                recipient_list=["sales@radometech.com"],
             )
 
             messages.success(request, "Message sent successfully!")
