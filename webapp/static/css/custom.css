@@ -6474,3 +6474,22 @@ blockquote p {
 }
 
 }
+
+.navbar-toggler.mobile-menu-btn {
+    visibility: hidden;   /* instead of display:none */
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 991px) {
+    .navbar-toggler.mobile-menu-btn {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+
+body {
+    padding-top: 90px; /* adjust based on header height */
+}

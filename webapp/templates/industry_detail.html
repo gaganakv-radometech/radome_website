@@ -1,4 +1,15 @@
 {% extends "base.html" %}
+{% block title %}
+{{ detail.meta_title|default:detail.page_title }}
+{% endblock %}
+
+{% block meta_description %}
+{{ detail.meta_description|default:detail.intro_text|truncatewords:25 }}
+{% endblock %}
+
+{% block meta_keywords %}
+{{ detail.meta_keywords|default:"industrial AI, predictive maintenance, automation" }}
+{% endblock %}
 {% load static %}
 {% block content %}
     <style>

@@ -3,18 +3,39 @@
 <html lang="en">
 
 <head>
+   <!-- Google Tag Manager -->
+   <script>
+      (function (w, d, s, l, i) {
+         w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+               new Date().getTime(), event: 'gtm.js'
+         }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+               'https://www.googletagmanager.com/gtm.js?id=GTM-T8DNJ4CB' + dl;
+         f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-T8DNJ4CB');
+   </script>
+   <!-- End Google Tag Manager -->
    <meta charset="utf-8">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-   <title>
-      {% block title %}
-      Radome Technologies – AI Driven Systems
-      {% endblock %}
-   </title>
+<title>
+{% block title %}
+Radome Technologies | AI in Aerospace, Manufacturing & Process Industry
+{% endblock %}
+</title>
+
+<meta name="description"
+content="{% block meta_description %}
+Radome Technologies delivers AI systems for aviation, manufacturing, automotive & process industries. Predictive maintenance, smart factory & aircraft health monitoring.
+{% endblock %}">
+
+<meta name="keywords"
+content="{% block meta_keywords %}
+AI in aviation, predictive maintenance, smart factory solutions, AI in process industry, aircraft health monitoring, manufacturing AI
+{% endblock %}">
 
    <meta name="robots" content="index, follow">
-   <meta name="description"
-      content="{% block meta_description %}Radome Technologies – AI driven systems for mission-critical industries{% endblock %}">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="theme-color" content="#140a52">
 
@@ -70,11 +91,11 @@
 
    <!-- Add these -->
 
-<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
 
-<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
-<link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
 
 
 
@@ -98,6 +119,13 @@
 </head>
 
 <body>
+
+   <!-- Google Tag Manager (noscript) -->
+   <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8DNJ4CB" height="0" width="0"
+         style="display:none;visibility:hidden"></iframe>
+   </noscript>
+   <!-- End Google Tag Manager (noscript) -->
 
    <div class="page-wrapper">
 
@@ -174,7 +202,7 @@
 
    <!-- Main Custom js file -->
    <script src="{% static 'js/function.js' %}"></script>
-   
+
 
    {% block extra_js %}
 
@@ -223,17 +251,17 @@
    </script>
 
 
-<script>
-window.addEventListener("scroll", function () {
-    const header = document.querySelector(".main-header");
+   <script>
+      window.addEventListener("scroll", function () {
+         const header = document.querySelector(".main-header");
 
-    if (window.scrollY > 50) {
-        header.classList.add("active-sticky-header");
-    } else {
-        header.classList.remove("active-sticky-header");
-    }
-});
-</script>
+         if (window.scrollY > 50) {
+            header.classList.add("active-sticky-header");
+         } else {
+            header.classList.remove("active-sticky-header");
+         }
+      });
+   </script>
 
    {% endblock %}
 

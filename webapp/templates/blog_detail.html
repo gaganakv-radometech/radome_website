@@ -1,4 +1,16 @@
 {% extends "base.html" %}
+
+{% block title %}
+{{ post.meta_title|default:post.title }}
+{% endblock %}
+
+{% block meta_description %}
+{{ post.meta_description|default:post.short_description }}
+{% endblock %}
+
+{% block meta_keywords %}
+{{ post.meta_keywords|default:"AI blog, industrial AI, predictive maintenance" }}
+{% endblock %}
 {% load static %}
 {% block content %}
 

@@ -40,7 +40,7 @@ urlpatterns = [
     path("dashboard/sections/<int:section_id>/edit/", views.edit_blog_section, name="edit_blog_section"),
     path("dashboard/sections/<int:section_id>/delete/", views.delete_blog_section, name="delete_blog_section"),
     path('dashboard/authors/create/', views.create_author, name='create_author'),
-
+ 
     path("post/<int:post_id>/update-order/",views.update_section_order,name="update_section_order"),
 
     path("privacy-policy/", views.privacy_policy, name="privacy_policy"),
