@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-Contact Radome | AI Solutions for Critical Operations
+Contact Radome Technologies | AI & Predictive Solutions
 {% endblock %}
 
 {% block meta_description %}
-Get in touch with Radome Technologies to explore AI solutions in aviation, manufacturing, automotive, and process industries.
+Get in touch with Radome Technologies for AI-driven predictive maintenance and industrial solutions. Schedule a demo or consultation today.
 {% endblock %}
 
 {% block meta_keywords %}
-contact AI company, industrial AI solutions, aerospace AI contact, manufacturing AI inquiry
+contact us, Book a demo , predictive maintenance demo, industrial ai consultation
 {% endblock %}
 
 {% load static %}
@@ -206,7 +206,7 @@ contact AI company, industrial AI solutions, aerospace AI contact, manufacturing
                      </div>
                      {% endfor %}
                      {% endif %}
-                     <form method="POST" novalidate>
+                     <form id="contactForm" method="POST" novalidate>
                         {% csrf_token %}
 
                         <!-- Name -->

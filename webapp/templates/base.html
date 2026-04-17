@@ -18,21 +18,20 @@
    <!-- End Google Tag Manager -->
    <meta charset="utf-8">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
 <title>
 {% block title %}
-Radome Technologies | AI in Aerospace, Manufacturing & Process Industry
+Radome Technologies
 {% endblock %}
 </title>
 
 <meta name="description"
 content="{% block meta_description %}
-Radome Technologies delivers AI systems for aviation, manufacturing, automotive & process industries. Predictive maintenance, smart factory & aircraft health monitoring.
+AI-powered predictive maintenance and intelligent systems for aviation, manufacturing and industrial assets. Reduce downtime and improve reliability.
 {% endblock %}">
 
 <meta name="keywords"
 content="{% block meta_keywords %}
-AI in aviation, predictive maintenance, smart factory solutions, AI in process industry, aircraft health monitoring, manufacturing AI
+ai predictive maintenance, industrial ai solutions, aircraft health monitoring, predictive analytics platform, predictive maintenance with ai, asset monitoring ai, prohm+
 {% endblock %}">
 
    <meta name="robots" content="index, follow">
@@ -53,10 +52,7 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
       content="{% block twitter_description %}AI driven systems for mission-critical industries{% endblock %}">
    <meta name="twitter:image" content="{% static 'images/logoradome.png' %}">
 
-   <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-
-
-
+<link rel="canonical" href="https://www.radometechnologies.com{{ request.path }}">
    <!-- Favicon -->
    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logoradome.png' %}">
 
@@ -72,7 +68,8 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
    <link rel="stylesheet" href="{% static 'css/flaticon_digiwize.css' %}">
    <link rel="stylesheet" href="{% static 'css/pbminfotech-base-icons.css' %}">
    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
-   <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+   <!-- <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}"> -->
+    
    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
@@ -100,6 +97,7 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
 
 
    {% block extra_css %}{% endblock %}
+
 
    <script type="application/ld+json">
 {
@@ -157,24 +155,23 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
    <script src="{% static 'js/jquery.appear.js' %}"></script>
    <script src="{% static 'js/numinate.min.js' %}"></script>
 
-   <script src="{% static 'js/swiper.min.js' %}"></script>
    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
    <script src="{% static 'js/circle-progress.js' %}"></script>
    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
 
    <script src="{% static 'js/aos.js' %}"></script>
-
+   <script src="{% static 'js/cursor.js' %}"></script> 
    <script src="{% static 'js/gsap.js' %}"></script>
    <script src="{% static 'js/ScrollTrigger.js' %}"></script>
    <script src="{% static 'js/SplitText.js' %}"></script>
-   <script src="{% static 'js/gsap-animation.js' %}"></script>
+   <!-- <script src="{% static 'js/gsap-animation.js' %}"></script> -->
 
    <script src="{% static 'js/scripts.js' %}"></script>
 
    <!-- Revolution Slider -->
-   <script src="{% static 'revolution/rslider.js' %}"></script>
+   <!-- <script src="{% static 'revolution/rslider.js' %}"></script>
    <script src="{% static 'revolution/rbtools.min.js' %}"></script>
-   <script src="{% static 'revolution/rs6.min.js' %}"></script>
+   <script src="{% static 'revolution/rs6.min.js' %}"></script> -->
 
    <!-- Validator js file -->
    <script src="{% static 'js/validator.min.js' %}"></script>
@@ -201,8 +198,9 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
    <script src="{% static 'js/wow.js' %}"></script>
 
    <!-- Main Custom js file -->
-   <script src="{% static 'js/function.js' %}"></script>
 
+   <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+   <script src="{% static 'js/function.js' %}"></script>
 
    {% block extra_js %}
 
@@ -229,6 +227,8 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
    <script>
       function scrollSlider(direction) {
          const container = document.getElementById('scrollWrapper');
+         if (!container) return;   // ✅ FIX
+
          container.scrollBy({ left: direction * 420, behavior: 'smooth' });
       }
    </script>
@@ -236,6 +236,8 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
    <script>
       (function () {
          const events = document.querySelectorAll('.timeline-event');
+         if (!events.length) return;   // ✅ FIX
+
          events.forEach(event => {
             event.addEventListener('mouseenter', () => event.style.zIndex = '20');
             event.addEventListener('mouseleave', () => event.style.zIndex = '');
@@ -253,14 +255,15 @@ AI in aviation, predictive maintenance, smart factory solutions, AI in process i
 
    <script>
       window.addEventListener("scroll", function () {
-         const header = document.querySelector(".main-header");
+         const header = document.querySelector(".site-header");
+         if (!header) return;   // ✅ FIX
 
          if (window.scrollY > 50) {
             header.classList.add("active-sticky-header");
          } else {
             header.classList.remove("active-sticky-header");
          }
-      });
+      });   
    </script>
 
    {% endblock %}

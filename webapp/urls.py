@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 
@@ -44,5 +44,6 @@ urlpatterns = [
     path("post/<int:post_id>/update-order/",views.update_section_order,name="update_section_order"),
 
     path("privacy-policy/", views.privacy_policy, name="privacy_policy"),
+    re_path(r'^(?P<path>.*\.html)$', views.html_redirect),
 ]
 

@@ -5181,7 +5181,7 @@
 .pbmit-element-portfolio-style-2 .row {
 	flex-wrap: unset;
 }
-
+/* 
 .pbmit-element-portfolio-style-2::before {
 	content: "";
 	position: absolute;
@@ -5189,10 +5189,10 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-image: url(../images/development-agency/portfolio-bg.png);
+	background-image: url('/static/images/development-agency/portfolio-bg.png');
 	background-position: center;
 	background-repeat: no-repeat;
-}
+} */
 
 .pbmit-element-portfolio-style-2 {
 	overflow: hidden;

@@ -504,7 +504,7 @@ def create_author(request):
         )
 
         messages.success(request, "Author created successfully!")
-        return redirect("create_post")
+        return redirect("create_post")   
 
     return render(request, "blog/create_author.html")
 
@@ -522,3 +522,24 @@ def update_section_order(request, post_id):
 
 def privacy_policy(request):
     return render(request, "privacy_policy.html")
+
+
+# ================================
+# OLD HTML URL REDIRECT (MANUAL)
+# ================================
+
+from django.shortcuts import redirect
+
+OLD_TO_NEW_URLS = {
+    "aircraft-predictive-maintenance-reducing-aog-events-with-ai.html": "aircraft-predictive-maintenance-reducing-aog-events-with-ai",
+    # 👉 ADD MORE LIKE THIS:
+    # "old-url.html": "new-slug",
+}
+
+def html_redirect(request, path):
+    if path in OLD_TO_NEW_URLS:
+        new_slug = OLD_TO_NEW_URLS[path]
+        return redirect(f"/blog/{new_slug}/", permanent=True)
+
+    # fallback (if not found)
+    return redirect("/blog/", permanent=True)

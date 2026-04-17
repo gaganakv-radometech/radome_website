@@ -321,26 +321,26 @@
     Masonry
   -------------------------------------*/
  
-	if (jQuery('.pbmit-element-viewtype-masonry').length > 0) {
-		jQuery('.pbmit-element-viewtype-masonry').each(function() {
+	// if (jQuery('.pbmit-element-viewtype-masonry').length > 0) {
+	// 	jQuery('.pbmit-element-viewtype-masonry').each(function() {
 
-			var main_ele = jQuery(this); 			
-			// init Masonry
-			let $grid = jQuery('.pbmit-element-posts-wrapper', main_ele).masonry({
+	// 		var main_ele = jQuery(this); 			
+	// 		// init Masonry
+	// 		let $grid = jQuery('.pbmit-element-posts-wrapper', main_ele).masonry({
 				
-				itemSelector: '.pbmit-portfolio-style-4, .pbmit-blog-style-1',
-				columnWidth: '.pbmit-portfolio-style-4, .pbmit-blog-style-1',
-				gutter: 0,
-				percentPosition: true,
-				stagger: 30,
-				// nicer reveal transition
-				visibleStyle: { transform: 'translateY(0)', opacity: 1 },
-				hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
-				horizontalOrder: true
-			});
+	// 			itemSelector: '.pbmit-portfolio-style-4, .pbmit-blog-style-1',
+	// 			columnWidth: '.pbmit-portfolio-style-4, .pbmit-blog-style-1',
+	// 			gutter: 0,
+	// 			percentPosition: true,
+	// 			stagger: 30,
+	// 			// nicer reveal transition
+	// 			visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+	// 			hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
+	// 			horizontalOrder: true
+	// 		});
 			 
-		}
-		)};
+	// 	}
+	// 	)};
 
   /*-------------------------------------
   ProgressBar

@@ -474,6 +474,10 @@ class IndustryDetail(models.Model):
         on_delete=models.CASCADE,
         related_name="detail"
     )
+    # SEO Fields
+    meta_title = models.CharField(max_length=255, blank=True)
+    meta_description = models.TextField(blank=True)
+    meta_keywords = models.CharField(max_length=300, blank=True)
 
     banner_image = models.ImageField(
         upload_to="our_work/industries/banner/",

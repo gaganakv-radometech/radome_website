@@ -242,8 +242,35 @@ class UseCaseAdmin(admin.ModelAdmin, ImagePreviewMixin):
 
 @admin.register(IndustryDetail)
 class IndustryDetailAdmin(admin.ModelAdmin):
-    list_display = ("industry", "product", "use_case")
-    autocomplete_fields = ["product", "use_case"]
+        list_display = ("industry", "product", "use_case")
+
+        fields = (
+        "industry",
+
+        # SEO 👇 ADD THIS
+        "meta_title",
+        "meta_description",
+        "meta_keywords",
+
+        # existing fields
+        "banner_image",
+        "page_title",
+        "intro_heading",
+        "intro_image",
+        "intro_text",
+        "highlight_text",
+
+        "product",
+        "product_preview_title",
+        "product_preview_description",
+        "product_preview_image",
+        "product_button_text",
+
+        "use_case",
+        "use_case_preview_title",
+        "use_case_preview_description",
+        "use_case_button_text",
+    )
 
 # ==================================================
 # INSIGHTS INTRO

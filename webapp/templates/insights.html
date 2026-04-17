@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-About Radome | AI System Engineering & Predictive Analytics Experts
+About Radome Technologies | AI Predictive Solutions Company
 {% endblock %}
 
 {% block meta_description %}
-Learn about Radome’s mission to engineer AI-driven systems for aviation, manufacturing, automotive and process industries.
+Radome Technologies builds AI-driven predictive maintenance and system engineering solutions for aviation, manufacturing and industrial sectors.
 {% endblock %}
 
 {% block meta_keywords %}
-system engineering AI, predictive analytics experts, AI team, machine learning company
+radome technologies, ai engineering company, predictive analytics experts, industrial ai company india, aerospace ai solutions
 {% endblock %}
 {% load static %}
 {% block content %}
@@ -224,32 +224,28 @@ system engineering AI, predictive analytics experts, AI team, machine learning c
             {% for member in team_members %}
 
             <div class="col-lg-4 col-md-4">
-                <div class="team-member-item wow fadeInUp" {% if forloop.counter > 1 %}data-wow-delay="0.25s"{% endif %}>
+<div class="team-member-item wow fadeInUp">
+    <div class="team-card">
 
-                    <div class="team-image-wrapper">
-                        {% if member.image %}
-                        <img src="{{ member.image.url }}" alt="{{ member.name }}" class="team-image" />
-                        {% endif %}
-                    </div>
+        <!-- FRONT -->
+        <div class="team-front">
+            <div class="team-image-wrapper">
+                <img src="{{ member.image.url }}" class="team-image" />
+            </div>
 
-                    <div class="team-info text-center mt-3">
-                        <h3 style="color: #140a52; font-size: 25px;">
-                            {{ member.name }}
-                        </h3>
-                        <p style="color: #111111; font-size: 20px;">
-                            {{ member.position }}
-                        </p>
-                    </div>
+            <div class="team-info mt-3">
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.position }}</p>
+            </div>
+        </div>
 
-                    {% if member.bio %}
-                    <div class="team-overlay">
-                        <p style="font-size: 18px;">
-                            {{ member.bio }}
-                        </p>
-                    </div>
-                    {% endif %}
+        <!-- BACK -->
+        <div class="team-back">
+            <p>{{ member.bio }}</p>
+        </div>
 
-                </div>
+    </div>
+</div>
             </div>
 
             {% endfor %}
@@ -307,31 +303,65 @@ system engineering AI, predictive analytics experts, AI team, machine learning c
     background:#f4f6fb;
     padding:80px 0;
 }
-
 .insight-intro-box{
     background:linear-gradient(135deg,#0b0f3f 0%,#140a52 100%);
     color:#ffffff;
 
-    padding:70px 90px;   /* ⬅️ increased padding */
-    border-radius:20px;
+    padding:25px 40px;   /* ⬅️ reduce height */
+    border-radius:16px;
 
-    font-size:24px;      /* ⬅️ bigger text */
-    line-height:2;       /* ⬅️ more breathing space */
+    font-size:18px;
+    line-height:1.6;
 
-    box-shadow:0 25px 50px rgba(0,0,0,0.15);
+    max-width:1000px;   /* ⬅️ MORE WIDTH */
+    width:100%;
+    margin:0 auto;
 
-    min-height:250px;    /* ⬅️ ensures height grows */
-}
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
 
-.insight-intro-box p{
-    margin:0;
-    text-align:justify;
-    text-justify:inter-word;
-
-    word-break: break-word;   /* prevents overflow */
+    min-height:auto;
 }
 /* MOBILE HERO TITLE CENTER FIX */
 @media (max-width:768px){
+    /* ===== TEAM FIX FOR MOBILE ===== */
+
+/* ❌ Disable flip on mobile */
+.team-member-item:hover .team-card{
+    transform:none;
+}
+
+/* Allow normal height */
+.team-card{
+    /* height:auto; */
+    height: 100%;
+}
+
+/* Front becomes normal block */
+.team-front{
+    position:relative;
+    /* height:auto; */
+}
+
+.team-back{
+    position:relative;
+    transform:none;
+
+    width:75%;
+
+    height:auto !important;     /* 🔥 IMPORTANT */
+    min-height:unset !important; /* remove restriction */
+
+    margin:15px auto 0;
+    padding:15px;
+
+    display:block;
+    text-align:justify;
+}
+
+/* Match image width */
+.team-image{
+    width:75% !important;
+}
 
 .pbmit-title-bar-content,
 .pbmit-title-bar-content-inner,
@@ -356,7 +386,71 @@ system engineering AI, predictive analytics experts, AI team, machine learning c
 /* ================================
    TEAM SECTION
 ================================ */
+.team-member-item{
+    perspective:1000px;
+    margin-bottom:40px;
+}
+.team-card{
+    height:500px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 
+    transform-style: preserve-3d;   /* 🔥 IMPORTANT */
+    transition: transform 0.6s;     /* 🔥 SMOOTH FLIP */
+    position: relative;             /* 🔥 REQUIRED */
+}
+
+.team-member-item:hover .team-card{
+    transform:rotateY(180deg);
+}
+.team-front,
+.team-back{
+    position:absolute;
+    width:100%;
+    height:70%;
+    top:0;
+    left:0;
+
+    backface-visibility:hidden;   /* MUST */
+    -webkit-backface-visibility:hidden; /* Safari fix */
+}
+.team-front{
+    background:#fff;
+    text-align:center;
+}
+
+.team-back{
+
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%) rotateY(180deg);
+
+    width:55%;       /* same as image width */
+    /* height:auto;       */
+
+    background:#0b0f3f;
+    color:#fff;
+
+
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+    text-align:left;
+
+
+    margin:0 auto;      /* center horizontally */
+    padding:10px;
+
+    border-radius:12px; /* optional: nicer look */
+}
+
+.team-back p{
+    font-size:14px;
+    line-height:1.6;
+    overflow:visible;
+}
 .team-member-item{
     position:relative;
     overflow:hidden;
@@ -481,6 +575,23 @@ system engineering AI, predictive analytics experts, AI team, machine learning c
     line-height:1.7 !important;
     border-radius:15px;
 }
+.insight-intro-box{
+    background:linear-gradient(135deg,#0b0f3f 0%,#140a52 100%);
+    color:#ffffff;
+
+    padding:40px 50px;   /* ⬅️ REDUCE (was 70px 90px) */
+    border-radius:20px;
+
+    font-size:18px;      /* ⬅️ slightly smaller text */
+    line-height:1.7;
+
+    max-width:700px;     /* ⬅️ CONTROL WIDTH */
+    margin:0 auto;       /* ⬅️ CENTER */
+
+    box-shadow:0 15px 30px rgba(0,0,0,0.12);
+
+    min-height:auto;     /* ⬅️ REMOVE FOR FLEX HEIGHT */
+}
 
 
 /* =========================
@@ -541,16 +652,6 @@ system engineering AI, predictive analytics experts, AI team, machine learning c
 
 .our-team h2{
     font-size:32px !important;
-}
-
-.team-image{
-    width:75% !important;
-}
-
-.team-overlay{
-    width:75% !important;
-    left:50%;
-    transform:translateX(-50%);
 }
 
 .team-member-item{
