@@ -195,12 +195,14 @@ def blog_detail(request, slug):
         "preview_mode": preview
     })
 
+from django.http import HttpResponse
 
 def contact(request):
     hero = PageBanner.objects.filter(page="contact").first()
 
     if request.method == "POST":
         form = ContactForm(request.POST)
+
         if form.is_valid():
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
@@ -208,23 +210,32 @@ def contact(request):
             message = form.cleaned_data["message"]
 
             full_message = f"""
-            Name: {name}
-            Email: {email}
-            Phone: {phone}
+Name: {name}
+Email: {email}
+Phone: {phone}
 
-            Message:
-            {message}
-            """
+Message:
+{message}
+"""
 
-            send_mail(
-                subject="New Contact Form Submission",
-                message=full_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=["sales@radometech.com"],
-            )
+            try:
+                send_mail(
+                    subject="New Contact Form Submission",
+                    message=full_message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=["ramya.j@radometech.com"],
+                    fail_silently=False,
+                )
 
-            messages.success(request, "Message sent successfully!")
-            return redirect("contact")
+                print("EMAIL SENT SUCCESSFULLY")
+
+                return HttpResponse("success")
+
+            except Exception as e:
+                print("EMAIL ERROR:", str(e))
+                return HttpResponse(str(e))
+
+        return HttpResponse("Invalid form")
 
     else:
         form = ContactForm()
@@ -233,6 +244,8 @@ def contact(request):
         "hero": hero,
         "form": form
     })
+   
+
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -536,10 +549,16 @@ OLD_TO_NEW_URLS = {
     # "old-url.html": "new-slug",
 }
 
+
+OLD_TO_NEW_URLS = {
+    "aircraft-predictive-maintenance-reducing-aog-events-with-ai.html": "aircraft-predictive-maintenance-reducing-aog-events-with-ai",
+}
+
 def html_redirect(request, path):
-    if path in OLD_TO_NEW_URLS:
-        new_slug = OLD_TO_NEW_URLS[path]
+    clean_path = path.strip("/").split("/")[-1]  # 👈 KEY FIX
+
+    if clean_path in OLD_TO_NEW_URLS:
+        new_slug = OLD_TO_NEW_URLS[clean_path]
         return redirect(f"/blog/{new_slug}/", permanent=True)
 
-    # fallback (if not found)
     return redirect("/blog/", permanent=True)

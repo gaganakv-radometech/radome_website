@@ -265,44 +265,7 @@
 		}
 	});
 
-	/* Contact form validation */
-	var $contactform = $("#contactForm");
-	$contactform.validator({focus: false}).on("submit", function (event) {
-		if (!event.isDefaultPrevented()) {
-			event.preventDefault();
-			submitForm();
-		}
-	});
 
-	function submitForm(){
-		/* Ajax call to submit form */
-		$.ajax({
-			type: "POST",
-			url: "form-process.php",
-			data: $contactform.serialize(),
-			success : function(text){
-				if (text == "success"){
-					formSuccess();
-				} else {
-					submitMSG(false,text);
-				}
-			}
-		});
-	}
-
-	function formSuccess(){
-		$contactform[0].reset();
-		submitMSG(true, "Message Sent Successfully!")
-	}
-
-	function submitMSG(valid, msg){
-		if(valid){
-			var msgClasses = "h4 text-success";
-		} else {
-			var msgClasses = "h4 text-danger";
-		}
-		$("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
-	}
 	/* Contact form validation end */
 
 	/* Our Project (filtering) Start */
@@ -338,7 +301,9 @@
 	/* Our Project (filtering) End */
 
 	/* Animated Wow Js */	
-	new WOW().init();
+	if (typeof WOW !== "undefined") {
+   		 new WOW().init();
+}
 
 	/* Popup Video */
 	if ($('.popup-video').length) {
@@ -367,9 +332,11 @@
 				mouseleave: function() {
 					//stuff to do on mouse leave
 				}
-			});
+			});zz
 		}                 
 	}
 	/* Why Choose us active End */
 	
 })(jQuery);
+
+

@@ -4,7 +4,8 @@ Contact Radome Technologies | AI & Predictive Solutions
 {% endblock %}
 
 {% block meta_description %}
-Get in touch with Radome Technologies for AI-driven predictive maintenance and industrial solutions. Schedule a demo or consultation today.
+Get in touch with Radome Technologies for AI-driven predictive maintenance and industrial solutions. Schedule a demo or
+consultation today.
 {% endblock %}
 
 {% block meta_keywords %}
@@ -45,7 +46,8 @@ contact us, Book a demo , predictive maintenance demo, industrial ai consultatio
          <div class="row">
             <div class="col-lg-6 pbmit-col-left" style="padding-left: 30px;">
                <div class="pbmit-heading-subheading">
-                  <h2 class="pbmit-title" style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 40px;">Let’s Build
+                  <h2 class="pbmit-title" style="font-family: 'Inter', sans-serif; font-weight: bold; font-size: 40px;">
+                     Let’s Build
                      Intelligence That Performs</h2>
                   <div class="pbmit-heading-desc"
                      style="color: #1a1919; font-family: 'Inter', sans-serif; font-weight: bold; font-size: 20px;">
@@ -197,6 +199,50 @@ contact us, Book a demo , predictive maintenance demo, industrial ai consultatio
                            -webkit-text-fill-color: #111 !important;
                            caret-color: #0de3d0;
                         }
+
+                        /* ================= BUTTON ================= */
+
+                        .contact-form button {
+                           width: 100%;
+                           background: linear-gradient(135deg, #0de3d0, #00bcd4);
+                           color: #08104d;
+                           border: none;
+                           padding: 14px 18px;
+                           border-radius: 10px;
+                           font-size: 17px;
+                           font-weight: 700;
+                           cursor: pointer;
+                           transition: all 0.3s ease;
+                           margin-top: 10px;
+                        }
+
+                        .contact-form button:hover {
+                           transform: translateY(-2px);
+                           box-shadow: 0 8px 20px rgba(13, 227, 208, 0.3);
+                        }
+
+                        /* ================= SUCCESS / ERROR MESSAGE ================= */
+
+                        #msgSubmit {
+                           margin-top: 15px;
+                           padding: 12px 16px;
+                           border-radius: 10px;
+                           font-size: 15px;
+                           font-weight: 600;
+                           display: none;
+                        }
+
+                        #msgSubmit.success {
+                           background: rgba(40, 167, 69, 0.15);
+                           color: #4dff88;
+                           border: 1px solid rgba(40, 167, 69, 0.3);
+                        }
+
+                        #msgSubmit.error {
+                           background: rgba(220, 53, 69, 0.15);
+                           color: #ff7b8a;
+                           border: 1px solid rgba(220, 53, 69, 0.3);
+                        }
                      </style>
                      {% if messages %}
                      {% for message in messages %}
@@ -206,47 +252,120 @@ contact us, Book a demo , predictive maintenance demo, industrial ai consultatio
                      </div>
                      {% endfor %}
                      {% endif %}
-                     <form id="contactForm" method="POST" novalidate>
+                     <form id="contactForm" method="POST">
+
                         {% csrf_token %}
 
-                        <!-- Name -->
                         {{ form.name }}
-                        {% if form.name.errors %}
-                        <div style="color:#ff4d4d; font-size:14px; margin-bottom:10px;">
-                           {{ form.name.errors.0 }}
-                        </div>
-                        {% endif %}
 
-                        <!-- Email -->
                         {{ form.email }}
-                        {% if form.email.errors %}
-                        <div style="color:#ff4d4d; font-size:14px; margin-bottom:10px;">
-                           {{ form.email.errors.0 }}
-                        </div>
-                        {% endif %}
 
-                        <!-- Phone -->
                         {{ form.phone }}
-                        {% if form.phone.errors %}
-                        <div style="color:#ff4d4d; font-size:14px; margin-bottom:10px;">
-                           {{ form.phone.errors.0 }}
-                        </div>
-                        {% endif %}
 
-                        <!-- Message -->
                         {{ form.message }}
-                        {% if form.message.errors %}
-                        <div style="color:#ff4d4d; font-size:14px; margin-bottom:10px;">
-                           {{ form.message.errors.0 }}
-                        </div>
-                        {% endif %}
 
-                        <button type="submit"
-                           style="background: hsl(211, 96%, 49%); color: white; border: none; cursor: pointer; padding: 10px; width: 100%; border-radius: 4px;">
+                        <button type="submit">
                            Send Message
                         </button>
-                     </form>
 
+                        <div id="msgSubmit"></div>
+
+                     </form>
+                     <script>
+
+                        document.getElementById("contactForm").addEventListener("submit", function (e) {
+
+                           e.preventDefault();
+
+                           const form = this;
+
+                           const name = form.querySelector("[name=name]").value.trim();
+                           const email = form.querySelector("[name=email]").value.trim();
+                           const phone = form.querySelector("[name=phone]").value.trim();
+                           const message = form.querySelector("[name=message]").value.trim();
+
+                           const msgBox = document.getElementById("msgSubmit");
+
+                           // ================= FRONTEND VALIDATION =================
+
+                           if (name.length < 3) {
+                              showError("Name must be at least 3 characters");
+                              return;
+                           }
+                           // ================= EMAIL VALIDATION =================
+
+                           const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                           if (!emailPattern.test(email)) {
+                              showError("Enter a valid email address");
+                              return;
+                           }
+
+                           if (!/^[A-Za-z ]+$/.test(name)) {
+                              showError("Name should contain only letters");
+                              return;
+                           }
+
+                           if (!/^[6-9]\d{9}$/.test(phone)) {
+                              showError("Enter valid 10-digit phone number");
+                              return;
+                           }
+
+                           if (message.length < 10) {
+                              showError("Message must be at least 10 characters");
+                              return;
+                           }
+
+                           // ================= API CALL =================
+
+                           fetch("/contact/", {
+
+                              method: "POST",
+
+                              headers: {
+                                 "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                                 "Content-Type": "application/x-www-form-urlencoded",
+                              },
+
+                              body: new URLSearchParams(new FormData(form))
+
+                           })
+
+                              .then(response => response.text())
+
+                              .then(data => {
+
+                                 if (data.trim() === "success") {
+
+                                    msgBox.style.display = "block";
+                                    msgBox.className = "success";
+                                    msgBox.innerHTML = "Message sent successfully!";
+
+                                    form.reset();
+
+                                 } else {
+
+                                    showError(data);
+                                 }
+                              })
+
+                              .catch(error => {
+
+                                 showError("Error sending message");
+                              });
+
+                           // ================= ERROR FUNCTION =================
+
+                           function showError(message) {
+
+                              msgBox.style.display = "block";
+                              msgBox.className = "error";
+                              msgBox.innerHTML = message;
+                           }
+
+                        });
+
+                     </script>
                   </div>
                </div>
             </div>
@@ -258,8 +377,8 @@ contact us, Book a demo , predictive maintenance demo, industrial ai consultatio
    <section class="contact-maps-section section-lgb">
       <div class="container-fluid px-0">
          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.8053341993577!2d77.55702377348105!3d12.897487616502065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3f9c6e7650c9%3A0x2c6a2d4cc5e20985!2sRadome%20Technologies%20and%20Services%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1771326010963!5m2!1sen!2sin%22 width="
-            600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.8053341993577!2d77.55702377348105!3d12.897487616502065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3f9c6e7650c9%3A0x2c6a2d4cc5e20985!2sRadome%20Technologies%20and%20Services%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1771326010963!5m2!1sen!2sin"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
    </section>

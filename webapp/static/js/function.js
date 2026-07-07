@@ -297,7 +297,7 @@ if ($contactform.length) {
 		/* Ajax call to submit form */
 		$.ajax({
 			type: "POST",
-			url: "form-process.php",
+			url: "/contact/",
 			data: $contactform.serialize(),
 			success : function(text){
 				if (text == "success"){
