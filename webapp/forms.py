@@ -150,7 +150,7 @@ class BlogPostForm(forms.ModelForm):
             'meta_description': forms.Textarea(attrs={
                 'class': 'w-full px-4 py-3 border rounded-lg',
                 'rows': 2,
-                'placeholder': 'SEO Description (150–160 characters)'
+                'placeholder': 'SEO Description (120–160 characters)'
             }),
 
             'meta_keywords': forms.TextInput(attrs={
@@ -199,10 +199,10 @@ class BlogPostForm(forms.ModelForm):
                 )
 
         if meta_description:
-            if len(meta_description) < 150 or len(meta_description) > 160:
+            if len(meta_description) < 120 or len(meta_description) > 160:
                 self.add_error(
                     "meta_description",
-                    "Meta description must be between 150 and 160 characters."
+                    "Meta description must be between 120 and 160 characters."
                 )
 
         return cleaned_data
